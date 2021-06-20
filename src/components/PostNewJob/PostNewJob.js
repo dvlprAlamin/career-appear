@@ -54,21 +54,21 @@ const PostNewJob = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        const projectData = {
+        const jobData = {
             ...formData,
             skills,
-            tags
+            tags,
+            status: 'pending'
         }
-        // axios.post('https://radiant-mesa-98046.herokuapp.com/addProject', projectData)
-        //     .then(res => {
-        //         console.log(res.data);
-        //         res.data && e.target.reset();
-        //         setLoading(false)
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
-        console.log(projectData);
+        axios.post('http://localhost:4000/addJob', jobData)
+            .then(res => {
+                console.log(res.data);
+                res.data && e.target.reset();
+                setLoading(false)
+            })
+            .catch(err => {
+                console.log(err);
+            });
     };
 
 

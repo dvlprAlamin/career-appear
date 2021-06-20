@@ -23,14 +23,13 @@ const useStyle = makeStyles(theme => ({
         padding: '2px 5px'
     }
 }))
-const SingleJobPost = ({ job }) => {
-    console.log(job);
+const SingleJobPost = ({ job, handleJobApprove }) => {
     const { jobSingleContainer, iconInfo, technologyItem } = useStyle();
-    const { title, company, location, experience, salary, summary, skillSet } = job || {};
+    const { _id, title, name, company, location, experience, salary, description, skills } = job || {};
     return (
         <div className={jobSingleContainer}>
             <Typography variant="h4" color="primary">{title}</Typography>
-            <Typography variant="h6">{company}</Typography>
+            <Typography variant="h6">{name}</Typography>
             <Typography variant="body1">
                 <span className={iconInfo}>
                     <IconButton>
@@ -52,14 +51,14 @@ const SingleJobPost = ({ job }) => {
                 </span>
             </Typography>
             <Typography variant="body1">
-                {summary}
+                {description}
             </Typography>
             <Box my={2}>
                 {
-                    skillSet.map(item => <span key={item} className={technologyItem}>{item}</span>)
+                    skills.map(item => <span key={item} className={technologyItem}>{item}</span>)
                 }
             </Box>
-            <Button variant="contained" color="primary">Apply Now</Button>
+            <Button variant="contained" color="primary" onClick={() => handleJobApprove(_id)}>Approve</Button>
         </div>
     );
 };

@@ -1,15 +1,23 @@
 import { Container, Paper, Typography, Button, IconButton, makeStyles } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import { jobs } from '../../../fakeData';
 import SingleJobPost from '../SingleJobPost/SingleJobPost';
 import JobFilter from '../JobFilter/JobFilter';
 import { useState } from 'react';
 import { Grid } from '@material-ui/core';
+import axios from 'axios';
 const useStyle = makeStyles(theme => ({
 
 }))
 const Home = () => {
+    const [jobs, setJobs] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:4000/allJobs')
+            .then(res => {
+                setJobs(res.data)
+            })
+    }, [])
     const [page, setPage] = React.useState(1);
     const jobsPerPage = 3;
     const defaultValue = jobs.slice(0, jobsPerPage)
@@ -35,7 +43,7 @@ const Home = () => {
                     <Grid item lg={9}>
 
                         {
-                            jobsOnPaginate.map((job, i) => <SingleJobPost job={job} key={i} />)
+                            jobs.filter(job => job.status === 'approved').map((job, i) => <SingleJobPost job={job} key={i} />)
                         }
                     </Grid>
                 </Grid>

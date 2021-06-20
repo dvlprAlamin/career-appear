@@ -5,8 +5,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -15,8 +15,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -25,8 +25,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -35,8 +35,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -45,8 +45,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -55,8 +55,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -65,8 +65,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -75,8 +75,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -85,8 +85,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -95,8 +95,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -105,8 +105,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -115,8 +115,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -125,8 +125,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -135,8 +135,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -145,8 +145,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -155,8 +155,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -165,8 +165,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -175,8 +175,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -185,8 +185,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -195,8 +195,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -205,8 +205,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     },
     {
@@ -215,8 +215,8 @@ export const jobs = [
         location: 'Gurgaon, Pune',
         experience: '0-5',
         salary: 'Not disclosed',
-        summary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
-        skillSet: ['HTML', 'CSS', 'Javascript', 'React'],
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id voluptatum dolore recusandae, enim praesentium doloremque eum laudantium, distinctio rem exercitationem officia consequatur aliquid adipisci?',
+        skills: ['HTML', 'CSS', 'Javascript', 'React'],
         tags: ['React js', 'Vue js', 'Angular js']
     }
 ]

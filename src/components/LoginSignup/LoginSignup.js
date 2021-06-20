@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -13,6 +12,14 @@ import { Paper } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useMyContext } from '../../context';
+import Packages from './Packages';
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import PaymentProcess from '../Payment/PaymentProcess';
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -23,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.primary.main,
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -36,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginSignup() {
     const classes = useStyles();
-    const { signUp, login, googleSignIn } = useMyContext();
+    const { signUp, login, googleSignIn, paymentToggler } = useMyContext();
     const history = useHistory();
     const location = useLocation();
     const { pathname } = location;
@@ -51,15 +58,16 @@ export default function LoginSignup() {
     }
     const signUpHandler = async e => {
         e.preventDefault();
-        try {
-            setError('')
-            setLoading(true)
-            await signUp(user.email, user.password)
-            history.replace(from)
-        } catch {
-            setError('Failed to create account')
-        }
-        setLoading(false)
+        // try {
+        //     setError('')
+        //     setLoading(true)
+        //     await signUp(user.email, user.password)
+        //     history.replace(from)
+        // } catch {
+        //     setError('Failed to create account')
+        // }
+        // setLoading(false)
+        console.log(user);
     }
     const loginHandler = async e => {
         e.preventDefault();
@@ -83,44 +91,40 @@ export default function LoginSignup() {
             setError('Failed to login')
         }
     }
+    const [accountType, setAccountType] = useState('')
+    const [selectPackage, setSelectPackage] = useState(false)
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
+        <Container component="main" maxWidth={pathname === '/signup' ? 'sm' : 'xs'}>
             <Paper elevation={3} style={{ padding: 15, margin: '20px auto' }}>
                 <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                    </Avatar>
+                    <Avatar className={classes.avatar} />
                     <Typography component="h1" variant="h5">
                         {pathname === '/signup' ? 'Sign up' : 'Log in'}
                     </Typography>
-                    <form className={classes.form} noValidate>
+
+                    <form className={classes.form} onSubmit={pathname === '/signup' ? signUpHandler : loginHandler}>
+                        {
+                            pathname === '/signup' &&
+                            <RadioGroup onChange={(e) => setAccountType(e.target.value)} row aria-label="position" name="position" defaultValue="top" style={{ justifyContent: 'center' }}>
+                                <FormControlLabel value="employer" control={<Radio color="primary" required />} label="For Employer" />
+                                <FormControlLabel value="jobSeeker" control={<Radio color="primary" required />} label="For Job seeker" />
+                            </RadioGroup>
+                        }
                         <Grid container spacing={2}>
                             {pathname === '/signup' &&
-                                <>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            autoComplete="fname"
-                                            name="firstName"
-                                            variant="standard"
-                                            required
-                                            fullWidth
-                                            id="firstName"
-                                            label="First Name"
-                                            autoFocus
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            variant="standard"
-                                            required
-                                            fullWidth
-                                            id="lastName"
-                                            label="Last Name"
-                                            name="lastName"
-                                            autoComplete="lname"
-                                        />
-                                    </Grid>
-                                </>}
+                                <Grid item xs={12}>
+                                    <TextField
+                                        autoComplete="name"
+                                        onBlur={onBlurHandler}
+                                        name="name"
+                                        variant="standard"
+                                        required
+                                        fullWidth
+                                        id="name"
+                                        label="Full Name"
+                                        autoFocus
+                                    />
+                                </Grid>}
                             <Grid item xs={12}>
                                 <TextField
                                     onBlur={onBlurHandler}
@@ -146,39 +150,59 @@ export default function LoginSignup() {
                                     autoComplete="current-password"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                {pathname === '/signup' ? <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I accept all terms and condition"
-                                /> : <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
-                                />}
-
-                            </Grid>
                         </Grid>
-                        {pathname === '/signup' ?
-                            <Button
-                                disable={loading}
-                                onClick={signUpHandler}
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="secondary"
-                                className={classes.submit}
-                            >
-                                Sign Up
-                            </Button> :
+                        {
+                            (pathname === '/signup' && accountType === 'employer') &&
+                            <>
+                                <Packages setSelectPackage={setSelectPackage} />
+                                {selectPackage && <PaymentProcess />}
+                            </>
+                        }
+                        {/* <Grid item xs={12}>
+                            {pathname === '/signup' ? <FormControlLabel
+                                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                label="I accept all terms and condition"
+                            /> : <FormControlLabel
+                                control={<Checkbox value="remember" color="primary" />}
+                                label="Remember me"
+                            />}
+
+                        </Grid> */}
+                        {pathname === '/login' ?
                             <Button
                                 onClick={loginHandler}
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                color="secondary"
+                                color="primary"
                                 className={classes.submit}
                             >
                                 Log In
-                            </Button>}
+                            </Button> :
+                            accountType === 'employer' ?
+                                <Button
+                                    disable={loading}
+                                    // onClick={signUpHandler}
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                >
+                                    Sign Up
+                                </Button> :
+                                <Button
+                                    disable={loading}
+                                    // onClick={signUpHandler}
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.submit}
+                                >
+                                    Sign Up
+                                </Button>}
+
                     </form>
                     {pathname === '/signup' ?
                         <span>Already have an account? <Link to="/login">
@@ -187,8 +211,8 @@ export default function LoginSignup() {
                         <span>Don't have an account? <Link to="/signup">
                             Sign Up
                         </Link></span>}
-                    <Typography variant="h6">-OR-</Typography>
-                    <Button style={{ marginTop: 10, background: '#202C45', color: '#fff' }} onClick={googleSignInHandler} variant="contained">Continue with Google</Button>
+                    {/* <Typography variant="h6">-OR-</Typography> */}
+                    {/* <Button style={{ marginTop: 10, background: '#202C45', color: '#fff' }} onClick={googleSignInHandler} variant="contained">Continue with Google</Button> */}
                 </div>
             </Paper>
         </Container>

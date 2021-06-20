@@ -11,6 +11,7 @@ export const ContextProvider = ({ children }) => {
     const [loggedInUser, setLoggedInUser] = useState({});
     const [selectedService, setSelectedService] = useState({});
     const [paymentSuccess, setPaymentSuccess] = useState('')
+    const [paymentToggler, setPaymentToggler] = useState(false)
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
     const email = loggedInUser?.email
@@ -56,6 +57,8 @@ export const ContextProvider = ({ children }) => {
         setSelectedService,
         paymentSuccess,
         setPaymentSuccess,
+        paymentToggler,
+        setPaymentToggler
     }
     return (
         <UserContext.Provider value={value}>

@@ -11,6 +11,7 @@ import Home from './components/Home/Home/Home';
 import LoginSignup from './components/LoginSignup/LoginSignup';
 import { ContextProvider } from './context';
 import PostNewJob from './components/PostNewJob/PostNewJob';
+import JobRequest from './components/JobRequest/JobRequest';
 const App = () => {
   const theme = createMuiTheme({
     palette: {
@@ -35,7 +36,8 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={LoginSignup} />
             <Route path="/signup" component={LoginSignup} />
-            <Route path="/dashboard" component={PostNewJob} />
+            {/* <Route path="/dashboard" component={PostNewJob} /> */}
+            <Route path="/dashboard" component={JobRequest} />
           </Switch>
         </Router>
       </ContextProvider>
