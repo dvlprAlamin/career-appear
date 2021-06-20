@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { teal } from '@material-ui/core/colors';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Navigation from './components/Shared/Navigation/Navigation';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Home from './components/Home/Home/Home';
+import LoginSignup from './components/LoginSignup/LoginSignup';
+import { ContextProvider } from './context';
+import PostNewJob from './components/PostNewJob/PostNewJob';
+const App = () => {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: teal[500],
+      },
+    },
+    typography: {
+      fontFamily: "'Poppins', sans-serif",
+      h2: {
+        fontWeight: 600,
+      },
+    }
 
-function App() {
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <ContextProvider>
+        <Router>
+          <Navigation />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={LoginSignup} />
+            <Route path="/signup" component={LoginSignup} />
+            <Route path="/dashboard" component={PostNewJob} />
+          </Switch>
+        </Router>
+      </ContextProvider>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
