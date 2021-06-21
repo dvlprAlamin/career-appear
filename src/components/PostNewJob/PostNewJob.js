@@ -1,11 +1,6 @@
 import { Button, Checkbox, Container, Grid, ListItemText, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useState } from 'react';
-// import Loader from '../components/Loader';
-// import PageHeader from '../components/PageHeader';
-// import PagePaper from '../components/PagePaper';
-// import AdminSidebar from '../components/Sidebar/AdminSidebar';
-// import { useMyContext } from '../context';
 
 const useStyles = makeStyles((theme) => ({
     textArea: {
@@ -28,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
             borderColor: theme.palette.text.primary
         },
         '&:focus': {
-            // outline: theme.palette.primary.main,
             border: '2px solid',
             paddingTop: 14,
             paddingLeft: 12,
@@ -73,7 +67,6 @@ const tagList = [
 ];
 const PostNewJob = () => {
     const { textArea } = useStyles();
-    // const { skills } = useMyContext();
     const [loading, setLoading] = useState(false);
     const [skills, setSkills] = useState([]);
     const [tags, setTags] = useState([])
@@ -93,7 +86,6 @@ const PostNewJob = () => {
         }
         axios.post('https://pacific-garden-69982.herokuapp.com/addJob', jobData)
             .then(res => {
-                console.log(res.data);
                 res.data && e.target.reset();
                 setLoading(false)
             })
@@ -227,8 +219,6 @@ const PostNewJob = () => {
                         <Button type="submit" disabled={loading} variant="contained" size="large" color="primary" style={{ margin: '10px auto' }}>Post</Button>
                     </Grid>
                 </Grid>
-
-                {/* {loading && <Loader />} */}
             </form>
         </Container>
     );

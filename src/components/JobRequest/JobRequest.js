@@ -13,7 +13,6 @@ const JobRequest = () => {
                 setJobs(res.data)
             })
     }, [])
-    console.log(jobs);
     const handleJobApprove = id => {
         axios.patch(`https://pacific-garden-69982.herokuapp.com/updateStatus/${id}`, { status: 'approved' })
             .then(res => {

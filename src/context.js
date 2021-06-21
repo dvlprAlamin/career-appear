@@ -86,7 +86,6 @@ export const ContextProvider = ({ children }) => {
     }, [jobsPerPage, currentPage, jobs])
 
     const paginate = (number) => setCurrentPage(number)
-    console.log(jobs, currentJobs)
     const value = {
         loggedInUser,
         setLoggedInUser,

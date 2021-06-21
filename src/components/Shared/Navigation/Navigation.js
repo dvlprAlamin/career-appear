@@ -12,7 +12,6 @@ import { Button, Container } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useStyles } from './NavigationStyle';
 import { useMyContext } from '../../../context';
-import { AvatarGroup } from '@material-ui/lab';
 import { Avatar } from '@material-ui/core';
 import logo from '../../../image/logo.png'
 import logoBlack from '../../../image/logo-black.png'
@@ -108,7 +107,9 @@ const Navigation = () => {
                                         }
                                     </Link>
                                     <ProfileDialog className={profileDialogStyle} open={open} onClose={handleClose} />
-                                    <Avatar onClick={handleClickOpen} className={userAvatar} src={loggedInUser.photoURL} />
+                                    <div className={userAvatar} >
+                                        <Avatar onClick={handleClickOpen} src={loggedInUser.photoURL} />
+                                    </div>
                                 </> :
                                 <>
                                     <Link className={link} to='/signup'>
