@@ -1,4 +1,4 @@
-export const jobs = [
+export const jobsList = [
     {
         title: 'React Js developer',
         company: 'Manufac Analytics Private Limited',

@@ -76,7 +76,7 @@ const PostNewJob = () => {
         <Container style={{ marginTop: 20 }}>
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
-                    <Grid item lg={6} xs={12}>
+                    <Grid item lg={4} md={6} xs={12}>
                         <Typography color="primary" variant="h5">Job Title</Typography>
                         <TextField
                             fullWidth
@@ -87,7 +87,7 @@ const PostNewJob = () => {
                             required
                         />
                     </Grid>
-                    <Grid item lg={6} xs={12}>
+                    <Grid item lg={4} md={6} xs={12}>
                         <Typography color="primary" variant="h5">Employer Name</Typography>
                         <TextField
                             fullWidth
@@ -98,7 +98,18 @@ const PostNewJob = () => {
                             required
                         />
                     </Grid>
-                    <Grid item lg={4} xs={12}>
+                    <Grid item lg={4} md={6} xs={12}>
+                        <Typography color="primary" variant="h5">Company Name</Typography>
+                        <TextField
+                            fullWidth
+                            name="company"
+                            onBlur={blurHandler}
+                            variant="outlined"
+                            placeholder="Enter company name"
+                            required
+                        />
+                    </Grid>
+                    <Grid item lg={4} md={6} xs={12}>
                         <Typography color="primary" variant="h5">Job Location</Typography>
                         <TextField
                             fullWidth
@@ -109,7 +120,7 @@ const PostNewJob = () => {
                             required
                         />
                     </Grid>
-                    <Grid item lg={4} xs={12}>
+                    <Grid item lg={4} md={6} xs={12}>
                         <Typography color="primary" variant="h5">Experience</Typography>
                         <TextField
                             fullWidth
@@ -120,7 +131,7 @@ const PostNewJob = () => {
                             required
                         />
                     </Grid>
-                    <Grid item lg={4} xs={12}>
+                    <Grid item lg={4} md={6} xs={12}>
                         <Typography color="primary" variant="h5">Salary Range</Typography>
                         <TextField
                             fullWidth

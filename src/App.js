@@ -36,8 +36,8 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={LoginSignup} />
             <Route path="/signup" component={LoginSignup} />
-            {/* <Route path="/dashboard" component={PostNewJob} /> */}
-            <Route path="/dashboard" component={JobRequest} />
+            <Route path="/dashboard" component={PostNewJob} />
+            {/* <Route path="/dashboard" component={JobRequest} /> */}
           </Switch>
         </Router>
       </ContextProvider>

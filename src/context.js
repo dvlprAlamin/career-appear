@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { jobsList } from "./fakeData";
 import { auth, googleProvider } from "./firebase";
 const UserContext = createContext();
 
@@ -45,6 +46,38 @@ export const ContextProvider = ({ children }) => {
         return unsubscribe;
     }, []);
 
+
+
+    const [usersOnPaginate, setUserOnPaginate] = useState(jobsList)
+    const [currentUsers, setCurrentUsers] = useState(usersOnPaginate);
+    // filter
+    // const [filterTag, setFilterTag] = useState('');
+    // useEffect(() => {
+    //         setCurrentUsers(usersOnPaginate.filter(user =>
+    //             user.name.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
+    //             user.email.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
+    //             user.website.toLowerCase().indexOf(query.toLowerCase()) > -1));
+    // }, [filterTag, usersOnPaginate])
+
+
+
+    // Pagination
+    const usersPerPage = 3;
+    const pageNumber = Math.ceil(jobsList.length / usersPerPage);
+
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+
+    useEffect(() => {
+        const indexOfLastUser = currentPage * usersPerPage;
+        const indexOfFirstUser = indexOfLastUser - usersPerPage;
+        setUserOnPaginate(jobsList.slice(indexOfFirstUser, indexOfLastUser));
+    }, [usersPerPage, currentPage])
+
+    const paginate = (number) => setCurrentPage(number)
+
     const value = {
         loggedInUser,
         setLoggedInUser,
@@ -58,7 +91,13 @@ export const ContextProvider = ({ children }) => {
         paymentSuccess,
         setPaymentSuccess,
         paymentToggler,
-        setPaymentToggler
+        setPaymentToggler,
+        currentUsers,
+        paginate,
+        pageNumber,
+        currentPage,
+        setCurrentPage,
+        usersOnPaginate
     }
     return (
         <UserContext.Provider value={value}>
