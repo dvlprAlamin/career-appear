@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginSignup() {
     const classes = useStyles();
-    const { signUp, login, googleSignIn, paymentSignupToggler } = useMyContext();
+    const { signUp, login, googleSignIn, paymentSignupToggler, paymentSuccess } = useMyContext();
     const history = useHistory();
     const location = useLocation();
     const { pathname } = location;
@@ -52,18 +52,38 @@ export default function LoginSignup() {
     const [user, setUser] = useState({})
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+
+    const [accountType, setAccountType] = useState('')
+    const [selectPackage, setSelectPackage] = useState(false)
+
+    const [packageName, setPackageName] = useState('')
     const onBlurHandler = (e) => {
         const newUser = { ...user };
         newUser[e.target.name] = e.target.value;
         setUser(newUser);
     }
     const handleUser = (role) => {
-        const newUserData = {
-            name: user.name,
-            email: user.email,
-            role
+        let newUserData = {};
+        if (role === 'employer') {
+            newUserData = {
+                name: user.name,
+                email: user.email,
+                role,
+                package: packageName,
+                paymentId: paymentSuccess
+
+            }
+        } else if (role === 'jobSeeker') {
+            newUserData = {
+                name: user.name,
+                email: user.email,
+                role
+            }
         }
         axios.post('http://localhost:4000/newUser', newUserData)
+            .then(res => {
+                console.log(res);
+            })
     }
     const signUpHandler = async e => {
         e.preventDefault();
@@ -77,7 +97,6 @@ export default function LoginSignup() {
             setError('Failed to create account')
         }
         setLoading(false)
-        console.log(user);
     }
     const loginHandler = async e => {
         e.preventDefault();
@@ -101,8 +120,7 @@ export default function LoginSignup() {
             setError('Failed to login')
         }
     }
-    const [accountType, setAccountType] = useState('')
-    const [selectPackage, setSelectPackage] = useState(false)
+
     return (
         <Container component="main" maxWidth={pathname === '/signup' ? 'sm' : 'xs'}>
             <Paper elevation={3} style={{ padding: 15, margin: '20px auto' }}>
@@ -161,13 +179,7 @@ export default function LoginSignup() {
                                 />
                             </Grid>
                         </Grid>
-                        {
-                            (pathname === '/signup' && accountType === 'employer') &&
-                            <>
-                                <Packages setSelectPackage={setSelectPackage} />
-                                {selectPackage && <PaymentProcess />}
-                            </>
-                        }
+
 
                         {pathname === '/login' ?
                             <Button
@@ -205,6 +217,13 @@ export default function LoginSignup() {
                                 </Button>}
 
                     </form>
+                    {
+                        (pathname === '/signup' && accountType === 'employer') &&
+                        <>
+                            <Packages setSelectPackage={setSelectPackage} setPackageName={setPackageName} />
+                            {selectPackage && <PaymentProcess />}
+                        </>
+                    }
                     {pathname === '/signup' ?
                         <span>Already have an account? <Link to="/login">
                             Log in

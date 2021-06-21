@@ -32,11 +32,11 @@ const useStyle = makeStyles(theme => ({
     }
 }))
 
-const Packages = ({ setSelectPackage }) => {
+const Packages = ({ setSelectPackage, setPackageName }) => {
     const { packageSingle } = useStyle()
     return (
         <div>
-            <Typography variant="h5" style={{ marginTop: 30, textAlign: 'center' }}>Choose a package</Typography>
+            <Typography variant="h5" style={{ marginTop: 30, textAlign: 'center' }}>Choose a package for sign up</Typography>
             <RadioGroup row aria-label="position" name="position" defaultValue="top">
                 <Grid container spacing={2}>
                     {
@@ -44,8 +44,9 @@ const Packages = ({ setSelectPackage }) => {
                             <Grid item xs={4}>
                                 <div className={packageSingle}>
                                     <FormControlLabel
-                                        onChange={() => {
+                                        onChange={e => {
                                             setSelectPackage(true)
+                                            setPackageName(e.target.value)
                                         }}
                                         value={name}
                                         labelPlacement="top"
