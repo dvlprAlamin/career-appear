@@ -4,6 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Typography, IconButton, makeStyles } from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import { useMyContext } from '../../../context';
 const useStyle = makeStyles(theme => ({
     filterContainer: {
         border: `1px solid ${theme.palette.primary.main}`,
@@ -16,9 +17,10 @@ const useStyle = makeStyles(theme => ({
 }))
 const JobFilter = () => {
     const { filterContainer } = useStyle()
-    const [tag, setTag] = React.useState('default');
+    const { filterTag, setFilterTag } = useMyContext();
+    // const [tag, setTag] = React.useState('default');
     const handleChange = (event) => {
-        setTag(event.target.value);
+        setFilterTag(event.target.value);
     };
     return (
         <div className={filterContainer}>
@@ -29,11 +31,11 @@ const JobFilter = () => {
             </Typography>
             <Select
                 variant="outlined"
-                value={tag}
+                value={filterTag}
                 onChange={handleChange}
                 fullWidth
             >
-                <MenuItem value='default' disabled>Filter by Tag</MenuItem>
+                <MenuItem value='all' disabled>Filter by Tag</MenuItem>
                 <MenuItem value='React js'>React js</MenuItem>
                 <MenuItem value='Vue js'>Vue js</MenuItem>
                 <MenuItem value='Angular js'>Angular js</MenuItem>

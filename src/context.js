@@ -48,22 +48,23 @@ export const ContextProvider = ({ children }) => {
 
 
 
-    const [usersOnPaginate, setUserOnPaginate] = useState(jobsList)
-    const [currentUsers, setCurrentUsers] = useState(usersOnPaginate);
+    const [currentJobs, setCurrentJobs] = useState(jobsList);
+    const [jobsOnPaginate, setJobsOnPaginate] = useState(currentJobs)
     // filter
-    // const [filterTag, setFilterTag] = useState('');
-    // useEffect(() => {
-    //         setCurrentUsers(usersOnPaginate.filter(user =>
-    //             user.name.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
-    //             user.email.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
-    //             user.website.toLowerCase().indexOf(query.toLowerCase()) > -1));
-    // }, [filterTag, usersOnPaginate])
+    const [filterTag, setFilterTag] = useState('all');
+    useEffect(() => {
+        if (filterTag === 'all') {
+            setCurrentJobs(jobsList);
+        } else {
+            setCurrentJobs(jobsList.filter(job => job.tags.indexOf(filterTag) > -1));
+        }
+    }, [filterTag, jobsOnPaginate])
 
-
+    console.log(currentJobs, jobsOnPaginate);
 
     // Pagination
-    const usersPerPage = 3;
-    const pageNumber = Math.ceil(jobsList.length / usersPerPage);
+    const jobsPerPage = 5;
+    const pageNumber = Math.ceil(currentJobs.length / jobsPerPage);
 
 
 
@@ -71,10 +72,10 @@ export const ContextProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const indexOfLastUser = currentPage * usersPerPage;
-        const indexOfFirstUser = indexOfLastUser - usersPerPage;
-        setUserOnPaginate(jobsList.slice(indexOfFirstUser, indexOfLastUser));
-    }, [usersPerPage, currentPage])
+        const indexOfLastJob = currentPage * jobsPerPage;
+        const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+        setJobsOnPaginate(jobsList.slice(indexOfFirstJob, indexOfLastJob));
+    }, [jobsPerPage, currentPage])
 
     const paginate = (number) => setCurrentPage(number)
 
@@ -92,12 +93,14 @@ export const ContextProvider = ({ children }) => {
         setPaymentSuccess,
         paymentToggler,
         setPaymentToggler,
-        currentUsers,
+        currentJobs,
         paginate,
         pageNumber,
         currentPage,
         setCurrentPage,
-        usersOnPaginate
+        jobsOnPaginate,
+        filterTag,
+        setFilterTag
     }
     return (
         <UserContext.Provider value={value}>

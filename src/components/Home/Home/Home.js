@@ -12,7 +12,7 @@ const useStyle = makeStyles(theme => ({
 
 }))
 const Home = () => {
-    const { currentUsers, pageNumber, paginate, currentPage, setCurrentPage, usersOnPaginate } = useMyContext();
+    const { currentJobs, pageNumber, paginate, currentPage, setCurrentPage, jobsOnPaginate } = useMyContext();
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:4000/allJobs')
@@ -38,7 +38,7 @@ const Home = () => {
                     <Grid item lg={9}>
 
                         {
-                            usersOnPaginate.map((job, i) => <SingleJobPost job={job} key={i} />)
+                            jobsOnPaginate.map((job, i) => <SingleJobPost job={job} key={i} />)
                         }
                     </Grid>
                 </Grid>
