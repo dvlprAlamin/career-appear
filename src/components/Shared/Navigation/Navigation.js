@@ -14,21 +14,25 @@ import { useStyles } from './NavigationStyle';
 import { useMyContext } from '../../../context';
 import { AvatarGroup } from '@material-ui/lab';
 import { Avatar } from '@material-ui/core';
-// import logo from '../../image/logo.png'
-// import logoBlack from '../../image/logo-black.png'
-
+import logo from '../../../image/logo.png'
+import logoBlack from '../../../image/logo-black.png'
+import ProfileDialog from './ProfileDialog';
 
 const Navigation = () => {
-    const { root, appBar, menuButton, drawerPaper, navbar, navItem, link, navItemDrawer, userAvatar } = useStyles()
+    const { root, appBar, menuButton, drawerPaper, navbar, navItem, link, navItemDrawer, userAvatar, profileDialogStyle } = useStyles()
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-    const { loggedInUser } = useMyContext();
+    const { loggedInUser, userRole } = useMyContext();
+    // Profile dialog
+    const [open, setOpen] = useState(false);
+    const handleClickOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const drawer = (
         <div style={{ textAlign: 'center' }}>
-            <img src='' style={{ maxWidth: '90%', margin: '20px auto' }} alt="Logo" />
+            <img src={logoBlack} style={{ maxWidth: '90%', margin: '20px auto' }} alt="Logo" />
             <Divider />
             <Link to='/' className={link}>
                 <ListItem button
@@ -82,7 +86,9 @@ const Navigation = () => {
             </nav>
 
             <Container className={navbar}>
-                <img src='' style={{ maxWidth: 250, flex: 1 }} alt="Logo" />
+                <div style={{ flex: 1 }}>
+                    <img src={logo} style={{ maxHeight: 60, width: 'auto' }} alt="Logo" />
+                </div>
                 <div style={{ flex: 3, textAlign: 'right', position: 'relative' }}>
                     <span>
                         <Link className={link} to='/'>
@@ -93,12 +99,16 @@ const Navigation = () => {
                         {
                             loggedInUser ?
                                 <>
+
                                     <Link className={link} to='/dashboard' style={{ marginRight: 50 }}>
-                                        <Button>
-                                            <span className={navItem}>Dashboard</span>
-                                        </Button>
+                                        {userRole !== 'jobSeeker' &&
+                                            <Button>
+                                                <span className={navItem}>Dashboard</span>
+                                            </Button>
+                                        }
                                     </Link>
-                                    <Avatar className={userAvatar} src={loggedInUser.photoURL} />
+                                    <ProfileDialog className={profileDialogStyle} open={open} onClose={handleClose} />
+                                    <Avatar onClick={handleClickOpen} className={userAvatar} src={loggedInUser.photoURL} />
                                 </> :
                                 <>
                                     <Link className={link} to='/signup'>

@@ -9,9 +9,10 @@ import {
 } from "react-router-dom";
 import Home from './components/Home/Home/Home';
 import LoginSignup from './components/LoginSignup/LoginSignup';
-import { ContextProvider } from './context';
+import { useMyContext } from './context';
 import PostNewJob from './components/PostNewJob/PostNewJob';
 import JobRequest from './components/JobRequest/JobRequest';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 const App = () => {
   const theme = createMuiTheme({
     palette: {
@@ -27,20 +28,21 @@ const App = () => {
     }
 
   });
+  const { userRole } = useMyContext();
   return (
     <ThemeProvider theme={theme}>
-      <ContextProvider>
-        <Router>
-          <Navigation />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={LoginSignup} />
-            <Route path="/signup" component={LoginSignup} />
-            <Route path="/dashboard" component={PostNewJob} />
-            {/* <Route path="/dashboard" component={JobRequest} /> */}
-          </Switch>
-        </Router>
-      </ContextProvider>
+      <Router>
+        <Navigation />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={LoginSignup} />
+          <Route path="/signup" component={LoginSignup} />
+          <PrivateRoute path="/dashboard">
+            {userRole === 'employer' && <PostNewJob />}
+            {userRole === 'admin' && <JobRequest />}
+          </PrivateRoute>
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 };

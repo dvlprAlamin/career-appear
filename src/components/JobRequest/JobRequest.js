@@ -4,10 +4,11 @@ import { Container } from '@material-ui/core';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import SingleJobPost from '../Home/SingleJobPost/SingleJobPost';
+import { Typography } from '@material-ui/core';
 const JobRequest = () => {
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:4000/allJobs')
+        axios.get('http://localhost:4000/pendingJobs')
             .then(res => {
                 setJobs(res.data)
             })
@@ -21,8 +22,13 @@ const JobRequest = () => {
     }
     return (
         <Container>
+            <Typography variant="h3" style={{ margin: '15px 0', textAlign: 'center' }}>Job Request</Typography>
             {
-                jobs.filter(job => job.status === 'pending').map(job => <SingleJobPost job={job} handleJobApprove={handleJobApprove} />)
+                jobs.length === 0 ?
+                    <div style={{ marginTop: '30vh', textAlign: 'center' }}>
+                        <Typography variant="h4">No job requests are pending.</Typography>
+                    </div> :
+                    jobs.map(job => <SingleJobPost job={job} handleJobApprove={handleJobApprove} />)
             }
         </Container>
     );

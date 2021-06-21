@@ -3,7 +3,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useMyContext } from '../../context';
 
-const PaymentForm = ({ paymentOrderToggler, setPaymentOrderToggler }) => {
+const PaymentForm = ({ paymentSignupToggler, setPaymentSignupToggler }) => {
     const { setPaymentSuccess } = useMyContext();
     const stripe = useStripe();
     const elements = useElements();
@@ -26,7 +26,7 @@ const PaymentForm = ({ paymentOrderToggler, setPaymentOrderToggler }) => {
         } else {
             setPaymentError('')
             setPaymentSuccess(paymentMethod.id)
-            setPaymentOrderToggler(true);
+            setPaymentSignupToggler(true);
             event.target.reset();
         }
     };
@@ -37,14 +37,14 @@ const PaymentForm = ({ paymentOrderToggler, setPaymentOrderToggler }) => {
                 <Button
                     style={{ marginTop: 20 }}
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     type="submit"
-                    disabled={!stripe || paymentOrderToggler}>
-                    {!paymentOrderToggler ? 'Pay' : 'Paid'}
+                    disabled={!stripe || paymentSignupToggler}>
+                    {!paymentSignupToggler ? 'Ok' : 'Done'}
                 </Button>
             </form>
             {paymentError && <Typography color="secondary" variant="body1">{paymentError}</Typography>}
-            {paymentOrderToggler && <Typography style={{ color: '#008000' }} variant="body1">Payment successful</Typography>}
+            {paymentSignupToggler && <Typography style={{ color: '#008000' }} variant="body1">Success</Typography>}
         </>
     );
 };

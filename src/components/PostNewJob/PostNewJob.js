@@ -127,7 +127,7 @@ const PostNewJob = () => {
                             name="experience"
                             onBlur={blurHandler}
                             variant="outlined"
-                            placeholder="Enter required experience"
+                            placeholder="Enter experience range in year"
                             required
                         />
                     </Grid>

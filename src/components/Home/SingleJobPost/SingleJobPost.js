@@ -3,12 +3,16 @@ import React from 'react';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useMyContext } from '../../../context';
 
 const useStyle = makeStyles(theme => ({
     jobSingleContainer: {
         border: `1px solid ${theme.palette.primary.main}`,
         padding: 20,
-        margin: '20px 0',
+        marginBottom: 25,
         boxShadow: '0 0 10px rgba(0,0,0,.2)'
     },
     iconInfo: {
@@ -23,9 +27,21 @@ const useStyle = makeStyles(theme => ({
         padding: '2px 5px'
     }
 }))
-const SingleJobPost = ({ job, handleJobApprove }) => {
+const SingleJobPost = ({ job, handleJobApprove, handleJobApply, admin }) => {
+    const { loggedInUser } = useMyContext();
     const { jobSingleContainer, iconInfo, technologyItem } = useStyle();
     const { _id, title, name, company, location, experience, salary, description, skills } = job || {};
+    const [disableApply, setDisableApply] = useState(false)
+    useEffect(() => {
+        const applicationData = {
+            jobId: _id,
+            email: loggedInUser?.email
+        }
+        axios.post('http://localhost:4000/checkApply', applicationData)
+            .then(res => {
+                setDisableApply(res.data)
+            })
+    }, [loggedInUser, _id])
     return (
         <div className={jobSingleContainer}>
             <Typography variant="h4" color="primary">{title}</Typography>
@@ -58,7 +74,9 @@ const SingleJobPost = ({ job, handleJobApprove }) => {
                     skills.map(item => <span key={item} className={technologyItem}>{item}</span>)
                 }
             </Box>
-            <Button variant="contained" color="primary" onClick={() => handleJobApprove(_id)}>Approve</Button>
+            {admin ?
+                <Button variant="contained" color="primary" onClick={() => handleJobApprove(_id)}>Approve</Button> :
+                <Button variant="contained" color="primary" onClick={() => handleJobApply(_id)} disabled={disableApply}>{disableApply ? 'Applied' : 'Apply'}</Button>}
         </div>
     );
 };

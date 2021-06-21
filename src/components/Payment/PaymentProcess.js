@@ -9,11 +9,10 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 const PaymentProcess = () => {
     const history = useHistory();
-    const { loggedInUser, paymentSuccess, setSelectedService } = useMyContext();
+    const { loggedInUser, paymentSuccess, paymentSignupToggler, setPaymentSignupToggler } = useMyContext();
     const stripePromise = loadStripe('pk_test_51Igx21EC9cEhbZos93ciYpaYBEYNtdTzdlqeH7luPXmuhdFNUfE7j5QIWL6On98Nh6X2pSSCJxb2RSR2brm8aHZa00qZhejvTt');
-    const [paymentOrderToggler, setPaymentOrderToggler] = useState(false)
+    // const [paymentSignupToggler, setPaymentSignupToggler] = useState(false);
     const [services, setServices] = useState([]);
-
 
 
     const orderSubmitHandler = () => {
@@ -31,26 +30,26 @@ const PaymentProcess = () => {
             .then(res => {
                 if (res.data) {
                     history.push('/my-order');
-                    setPaymentOrderToggler(false)
+                    setPaymentSignupToggler(false)
                 }
             })
     }
     return (
         <>
             <Container className='sidebarContainer'>
-                <Paper elevation={3} style={{ maxWidth: 800, margin: '20px auto', padding: 20 }}>
+                <div style={{ maxWidth: 800, margin: '20px auto', padding: 20 }}>
                     <Grid container spacing={3}>
 
 
                         <Grid item lg={12} xs={12}>
-                            <Typography variant="caption">Pay with</Typography>
-                            <Typography variant="h5"><Radio checked /><CreditCardIcon /> Credit Card</Typography>
+                            <Typography variant="caption">Setup payment method</Typography>
+                            <Typography variant="h5"><Radio checked color="primary" /><CreditCardIcon /> Credit Card</Typography>
                         </Grid>
                         <Grid item lg={12} xs={12}>
                             <Elements stripe={stripePromise}>
                                 <PaymentForm
-                                    paymentOrderToggler={paymentOrderToggler}
-                                    setPaymentOrderToggler={setPaymentOrderToggler}
+                                    paymentSignupToggler={paymentSignupToggler}
+                                    setPaymentSignupToggler={setPaymentSignupToggler}
                                 />
                             </Elements>
                         </Grid>
@@ -64,7 +63,7 @@ const PaymentProcess = () => {
                             color="secondary">
                             Place Order</Button>
                     </div> */}
-                </Paper>
+                </div>
             </Container>
         </>
     );

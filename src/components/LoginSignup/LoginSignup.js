@@ -19,6 +19,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import PaymentProcess from '../Payment/PaymentProcess';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginSignup() {
     const classes = useStyles();
-    const { signUp, login, googleSignIn, paymentToggler } = useMyContext();
+    const { signUp, login, googleSignIn, paymentSignupToggler } = useMyContext();
     const history = useHistory();
     const location = useLocation();
     const { pathname } = location;
@@ -56,17 +57,26 @@ export default function LoginSignup() {
         newUser[e.target.name] = e.target.value;
         setUser(newUser);
     }
+    const handleUser = (role) => {
+        const newUserData = {
+            name: user.name,
+            email: user.email,
+            role
+        }
+        axios.post('http://localhost:4000/newUser', newUserData)
+    }
     const signUpHandler = async e => {
         e.preventDefault();
-        // try {
-        //     setError('')
-        //     setLoading(true)
-        //     await signUp(user.email, user.password)
-        //     history.replace(from)
-        // } catch {
-        //     setError('Failed to create account')
-        // }
-        // setLoading(false)
+        try {
+            setError('')
+            setLoading(true)
+            await signUp(user.email, user.password)
+            handleUser(accountType);
+            history.replace(from)
+        } catch {
+            setError('Failed to create account')
+        }
+        setLoading(false)
         console.log(user);
     }
     const loginHandler = async e => {
@@ -158,19 +168,10 @@ export default function LoginSignup() {
                                 {selectPackage && <PaymentProcess />}
                             </>
                         }
-                        {/* <Grid item xs={12}>
-                            {pathname === '/signup' ? <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                label="I accept all terms and condition"
-                            /> : <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />}
 
-                        </Grid> */}
                         {pathname === '/login' ?
                             <Button
-                                onClick={loginHandler}
+                                // onClick={loginHandler}
                                 type="submit"
                                 fullWidth
                                 variant="contained"
@@ -181,7 +182,7 @@ export default function LoginSignup() {
                             </Button> :
                             accountType === 'employer' ?
                                 <Button
-                                    disable={loading}
+                                    disabled={!paymentSignupToggler}
                                     // onClick={signUpHandler}
                                     type="submit"
                                     fullWidth
@@ -192,7 +193,7 @@ export default function LoginSignup() {
                                     Sign Up
                                 </Button> :
                                 <Button
-                                    disable={loading}
+                                    disabled={loading}
                                     // onClick={signUpHandler}
                                     type="submit"
                                     fullWidth
@@ -211,8 +212,8 @@ export default function LoginSignup() {
                         <span>Don't have an account? <Link to="/signup">
                             Sign Up
                         </Link></span>}
-                    {/* <Typography variant="h6">-OR-</Typography> */}
-                    {/* <Button style={{ marginTop: 10, background: '#202C45', color: '#fff' }} onClick={googleSignInHandler} variant="contained">Continue with Google</Button> */}
+                    <Typography variant="h6">-OR-</Typography>
+                    <Button style={{ marginTop: 10, background: '#202C45', color: '#fff' }} onClick={googleSignInHandler} variant="contained">Continue with Google</Button>
                 </div>
             </Paper>
         </Container>

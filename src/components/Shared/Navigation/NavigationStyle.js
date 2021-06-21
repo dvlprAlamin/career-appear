@@ -84,6 +84,11 @@ export const useStyles = makeStyles((theme) => ({
     userAvatar: {
         position: 'absolute',
         right: 0,
+        top: 0,
+        cursor: 'pointer'
+    },
+    profileDialogStyle: {
+        position: 'absolute',
         top: 0
     }
 }));

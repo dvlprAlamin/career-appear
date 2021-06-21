@@ -9,7 +9,6 @@ const useStyle = makeStyles(theme => ({
     filterContainer: {
         border: `1px solid ${theme.palette.primary.main}`,
         padding: 20,
-        margin: '20px 0',
         boxShadow: '0 0 10px rgba(0,0,0,.2)',
         position: 'sticky',
         top: 25

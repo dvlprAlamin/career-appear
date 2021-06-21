@@ -12,7 +12,7 @@ const useStyle = makeStyles(theme => ({
 
 }))
 const Home = () => {
-    const { currentJobs, pageNumber, paginate, currentPage, setCurrentPage, jobsOnPaginate } = useMyContext();
+    const { currentJobs, pageNumber, paginate, currentPage, setCurrentPage, jobsOnPaginate, loggedInUser } = useMyContext();
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:4000/allJobs')
@@ -20,25 +20,33 @@ const Home = () => {
                 setJobs(res.data)
             })
     }, [])
-    // const [page, setPage] = React.useState(1);
 
     const handleChange = (event, value) => {
         setCurrentPage(value);
         paginate(value)
     };
 
-
+    const handleJobApply = id => {
+        const applicationData = {
+            jobId: id,
+            email: loggedInUser.email,
+        }
+        axios.post('http://localhost:4000/apply', applicationData)
+            .then(res => {
+                console.log(res)
+            })
+    }
     return (
         <>
-            <Container>
+            <Container style={{ marginTop: 25 }}>
                 <Grid container spacing={3}>
-                    <Grid item lg={3}>
+                    <Grid item lg={3} md={3} sm={12}>
                         <JobFilter />
                     </Grid>
-                    <Grid item lg={9}>
+                    <Grid item lg={9} md={9} sm={12}>
 
                         {
-                            jobsOnPaginate.map((job, i) => <SingleJobPost job={job} key={i} />)
+                            jobs.map((job, i) => <SingleJobPost job={job} key={i} handleJobApply={handleJobApply} admin={false} />)
                         }
                     </Grid>
                 </Grid>

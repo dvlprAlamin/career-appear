@@ -10,18 +10,20 @@ export const useMyContext = () => {
 
 export const ContextProvider = ({ children }) => {
     const [loggedInUser, setLoggedInUser] = useState({});
-    const [selectedService, setSelectedService] = useState({});
     const [paymentSuccess, setPaymentSuccess] = useState('')
-    const [paymentToggler, setPaymentToggler] = useState(false)
+    const [paymentSignupToggler, setPaymentSignupToggler] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [userRole, setUserRole] = useState('jobSeeker');
+
     const email = loggedInUser?.email
-    // useEffect(() => {
-    //     axios.post('https://arcane-sands-09318.herokuapp.com/admin', { email: email })
-    //         .then(res => {
-    //             setIsAdmin(res.data)
-    //         })
-    // }, [email])
+    useEffect(() => {
+        if (email) {
+            axios.post('http://localhost:4000/UserRole', { email: email })
+                .then(res => {
+                    setUserRole(res?.data[0]?.role)
+                })
+        }
+    }, [email])
 
     const signUp = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password)
@@ -60,7 +62,6 @@ export const ContextProvider = ({ children }) => {
         }
     }, [filterTag, jobsOnPaginate])
 
-    console.log(currentJobs, jobsOnPaginate);
 
     // Pagination
     const jobsPerPage = 5;
@@ -86,13 +87,11 @@ export const ContextProvider = ({ children }) => {
         login,
         googleSignIn,
         logOut,
-        isAdmin,
-        selectedService,
-        setSelectedService,
+        userRole,
+        paymentSignupToggler,
+        setPaymentSignupToggler,
         paymentSuccess,
         setPaymentSuccess,
-        paymentToggler,
-        setPaymentToggler,
         currentJobs,
         paginate,
         pageNumber,
