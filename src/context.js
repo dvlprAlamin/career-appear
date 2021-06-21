@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth, googleProvider } from "./firebase";
+import { auth } from "./firebase";
 const UserContext = createContext();
 
 export const useMyContext = () => {
@@ -24,10 +24,6 @@ export const ContextProvider = ({ children }) => {
     }
     const logOut = () => {
         return auth.signOut();
-    }
-
-    const googleSignIn = () => {
-        return auth.signInWithPopup(googleProvider)
     }
 
     useEffect(() => {
@@ -96,7 +92,6 @@ export const ContextProvider = ({ children }) => {
         setLoggedInUser,
         signUp,
         login,
-        googleSignIn,
         logOut,
         userRole,
         paymentSignupToggler,

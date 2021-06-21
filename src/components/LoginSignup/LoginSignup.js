@@ -40,13 +40,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginSignup() {
     const classes = useStyles();
-    const { signUp, login, googleSignIn, paymentSignupToggler, paymentSuccess } = useMyContext();
+    const { signUp, login, paymentSignupToggler, paymentSuccess } = useMyContext();
     const history = useHistory();
     const location = useLocation();
     const { pathname } = location;
     const { from } = location.state || { from: { pathname: "/" } };
     const [user, setUser] = useState({})
-    const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
     const [accountType, setAccountType] = useState('')
@@ -85,37 +84,26 @@ export default function LoginSignup() {
         e.preventDefault();
         handleUser(accountType);
         try {
-            setError('')
             setLoading(true)
             await signUp(user.email, user.password)
             history.replace(from)
-        } catch {
-            setError('Failed to create account')
+        } catch (err) {
+            console.log(err);
         }
         setLoading(false)
     }
     const loginHandler = async e => {
         e.preventDefault();
         try {
-            setError('')
             setLoading(true)
             await login(user.email, user.password)
             history.replace(from)
-        } catch {
-            setError('Failed to login')
+        } catch (err) {
+            console.log(err);
         }
         setLoading(false)
     }
-    const googleSignInHandler = async () => {
-        try {
-            setError('')
-            setLoading(true)
-            await googleSignIn();
-            history.replace(from)
-        } catch (error) {
-            setError('Failed to login')
-        }
-    }
+
 
     return (
         <Container component="main" maxWidth={pathname === '/signup' ? 'sm' : 'xs'}>
@@ -179,7 +167,6 @@ export default function LoginSignup() {
 
                         {pathname === '/login' ?
                             <Button
-                                // onClick={loginHandler}
                                 type="submit"
                                 fullWidth
                                 variant="contained"
@@ -191,7 +178,6 @@ export default function LoginSignup() {
                             accountType === 'employer' ?
                                 <Button
                                     disabled={!paymentSignupToggler}
-                                    // onClick={signUpHandler}
                                     type="submit"
                                     fullWidth
                                     variant="contained"
@@ -202,7 +188,6 @@ export default function LoginSignup() {
                                 </Button> :
                                 <Button
                                     disabled={loading}
-                                    // onClick={signUpHandler}
                                     type="submit"
                                     fullWidth
                                     variant="contained"
@@ -227,8 +212,6 @@ export default function LoginSignup() {
                         <span>Don't have an account? <Link to="/signup">
                             Sign Up
                         </Link></span>}
-                    <Typography variant="h6">-OR-</Typography>
-                    <Button style={{ marginTop: 10, background: '#202C45', color: '#fff' }} onClick={googleSignInHandler} variant="contained">Continue with Google</Button>
                 </div>
             </Paper>
         </Container>
