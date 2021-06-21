@@ -1,4 +1,4 @@
-import { Paper, Typography, Button, IconButton, makeStyles, Box } from '@material-ui/core';
+import { Typography, Button, IconButton, makeStyles, Box } from '@material-ui/core';
 import React from 'react';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useMyContext } from '../../../context';
+import { Person } from '@material-ui/icons';
 
 const useStyle = makeStyles(theme => ({
     jobSingleContainer: {
@@ -37,15 +38,23 @@ const SingleJobPost = ({ job, handleJobApprove, handleJobApply, admin }) => {
             jobId: _id,
             email: loggedInUser?.email
         }
-        axios.post('http://localhost:4000/checkApply', applicationData)
+        axios.post('https://pacific-garden-69982.herokuapp.com/checkApply', applicationData)
             .then(res => {
                 setDisableApply(res.data)
             })
     }, [loggedInUser, _id])
     return (
         <div className={jobSingleContainer}>
-            <Typography variant="h4" color="primary">{title}</Typography>
-            <Typography variant="h6">{name}</Typography>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography variant="h4" color="primary">{title}</Typography>
+                <Typography variant="h6" color="primary">
+                    <IconButton>
+                        <Person color="primary" />
+                    </IconButton>
+                    {name}
+                </Typography>
+            </div>
+            <Typography variant="h6">{company}</Typography>
             <Typography variant="body1">
                 <span className={iconInfo}>
                     <IconButton>

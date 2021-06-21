@@ -38,8 +38,39 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }))
-const skillList = ['HTML', 'CSS', 'Javascript', 'React']
-const tagList = ['web development', 'React developer', 'Front-end developer', 'Back-end developer']
+const skillList = [
+    "HTML",
+    "CSS",
+    "Javascript",
+    "React",
+    "React Native",
+    "Java",
+    "Node",
+    "Express",
+    "MongoDB",
+    "Redux",
+    "Bootstrap",
+    "Material UI",
+    "PHP",
+    "Python",
+    "Laravel",
+    "C",
+    "C++",
+    "C#",
+    ".Net",
+    "Django",
+    "Vue",
+    "Angular"
+];
+const tagList = [
+    "Front-end development",
+    "React developer",
+    "MERN stack",
+    "Full stack",
+    "Back-end development",
+    "Web development",
+    "App development"
+];
 const PostNewJob = () => {
     const { textArea } = useStyles();
     // const { skills } = useMyContext();
@@ -60,7 +91,7 @@ const PostNewJob = () => {
             tags,
             status: 'pending'
         }
-        axios.post('http://localhost:4000/addJob', jobData)
+        axios.post('https://pacific-garden-69982.herokuapp.com/addJob', jobData)
             .then(res => {
                 console.log(res.data);
                 res.data && e.target.reset();
@@ -74,6 +105,7 @@ const PostNewJob = () => {
 
     return (
         <Container style={{ marginTop: 20 }}>
+            <Typography variant="h3" style={{ textAlign: 'center', margin: '15px 0' }}>Post a job</Typography>
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                     <Grid item lg={4} md={6} xs={12}>
@@ -192,7 +224,7 @@ const PostNewJob = () => {
 
 
                     <Grid item xs={12} style={{ textAlign: 'center' }}>
-                        <Button type="submit" disabled={loading} variant="contained" size="large" color="primary" style={{ margin: '10px auto' }}>Post The Job</Button>
+                        <Button type="submit" disabled={loading} variant="contained" size="large" color="primary" style={{ margin: '10px auto' }}>Post</Button>
                     </Grid>
                 </Grid>
 

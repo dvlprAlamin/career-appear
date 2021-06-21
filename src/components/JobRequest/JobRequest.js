@@ -8,14 +8,14 @@ import { Typography } from '@material-ui/core';
 const JobRequest = () => {
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:4000/pendingJobs')
+        axios.get('https://pacific-garden-69982.herokuapp.com/pendingJobs')
             .then(res => {
                 setJobs(res.data)
             })
     }, [])
     console.log(jobs);
     const handleJobApprove = id => {
-        axios.patch(`http://localhost:4000/updateStatus/${id}`, { status: 'approved' })
+        axios.patch(`https://pacific-garden-69982.herokuapp.com/updateStatus/${id}`, { status: 'approved' })
             .then(res => {
                 console.log(res.data);
             })
@@ -28,7 +28,7 @@ const JobRequest = () => {
                     <div style={{ marginTop: '30vh', textAlign: 'center' }}>
                         <Typography variant="h4">No job requests are pending.</Typography>
                     </div> :
-                    jobs.map(job => <SingleJobPost job={job} handleJobApprove={handleJobApprove} />)
+                    jobs.map(job => <SingleJobPost job={job} handleJobApprove={handleJobApprove} admin={true} />)
             }
         </Container>
     );

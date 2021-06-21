@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,11 +12,8 @@ import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useMyContext } from '../../context';
 import Packages from './Packages';
-
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import PaymentProcess from '../Payment/PaymentProcess';
 import axios from 'axios';
 
@@ -80,18 +76,18 @@ export default function LoginSignup() {
                 role
             }
         }
-        axios.post('http://localhost:4000/newUser', newUserData)
+        axios.post('https://pacific-garden-69982.herokuapp.com/newUser', newUserData)
             .then(res => {
                 console.log(res);
             })
     }
     const signUpHandler = async e => {
         e.preventDefault();
+        handleUser(accountType);
         try {
             setError('')
             setLoading(true)
             await signUp(user.email, user.password)
-            handleUser(accountType);
             history.replace(from)
         } catch {
             setError('Failed to create account')

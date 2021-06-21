@@ -35,9 +35,17 @@ const JobFilter = () => {
                 fullWidth
             >
                 <MenuItem value='all' disabled>Filter by Tag</MenuItem>
-                <MenuItem value='React js'>React js</MenuItem>
-                <MenuItem value='Vue js'>Vue js</MenuItem>
-                <MenuItem value='Angular js'>Angular js</MenuItem>
+                {
+                    [
+                        "Front-end development",
+                        "React developer",
+                        "MERN stack",
+                        "Full stack",
+                        "Back-end development",
+                        "Web development",
+                        "App development"
+                    ].map(item => <MenuItem value={item} key={item}>{item}</MenuItem>)
+                }
             </Select>
         </div>
     );

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { jobsList } from "./fakeData";
 import { auth, googleProvider } from "./firebase";
 const UserContext = createContext();
 
@@ -15,15 +14,6 @@ export const ContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [userRole, setUserRole] = useState('jobSeeker');
 
-    const email = loggedInUser?.email
-    useEffect(() => {
-        if (email) {
-            axios.post('http://localhost:4000/UserRole', { email: email })
-                .then(res => {
-                    setUserRole(res?.data[0]?.role)
-                })
-        }
-    }, [email])
 
     const signUp = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password)
@@ -49,22 +39,43 @@ export const ContextProvider = ({ children }) => {
     }, []);
 
 
+    const email = loggedInUser?.email
+    useEffect(() => {
+        if (email) {
+            axios.post('https://pacific-garden-69982.herokuapp.com/UserRole', { email: email })
+                .then(res => {
+                    setUserRole(res?.data[0]?.role)
+                })
+        }
+    }, [email])
 
-    const [currentJobs, setCurrentJobs] = useState(jobsList);
+    const [jobs, setJobs] = useState([])
+    useEffect(() => {
+        axios.get('https://pacific-garden-69982.herokuapp.com/approvedJobs')
+            .then(res => {
+                setJobs(res.data)
+            })
+    }, [])
+
+
+
+
+
+    const [currentJobs, setCurrentJobs] = useState(jobs);
     const [jobsOnPaginate, setJobsOnPaginate] = useState(currentJobs)
     // filter
     const [filterTag, setFilterTag] = useState('all');
     useEffect(() => {
         if (filterTag === 'all') {
-            setCurrentJobs(jobsList);
+            setCurrentJobs(jobs);
         } else {
-            setCurrentJobs(jobsList.filter(job => job.tags.indexOf(filterTag) > -1));
+            setCurrentJobs(jobs.filter(job => job.tags.indexOf(filterTag) > -1));
         }
     }, [filterTag, jobsOnPaginate])
 
 
     // Pagination
-    const jobsPerPage = 5;
+    const jobsPerPage = 20;
     const pageNumber = Math.ceil(currentJobs.length / jobsPerPage);
 
 
@@ -75,11 +86,11 @@ export const ContextProvider = ({ children }) => {
     useEffect(() => {
         const indexOfLastJob = currentPage * jobsPerPage;
         const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-        setJobsOnPaginate(jobsList.slice(indexOfFirstJob, indexOfLastJob));
-    }, [jobsPerPage, currentPage])
+        setJobsOnPaginate(jobs.slice(indexOfFirstJob, indexOfLastJob));
+    }, [jobsPerPage, currentPage, jobs])
 
     const paginate = (number) => setCurrentPage(number)
-
+    console.log(jobs, currentJobs)
     const value = {
         loggedInUser,
         setLoggedInUser,
